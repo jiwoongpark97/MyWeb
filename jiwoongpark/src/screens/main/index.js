@@ -10,15 +10,13 @@ import insta from '../../images/insta.png'
 import fb from '../../images/fb.png'
 import React from 'react'
 import cur from '../../cursor50.png'
+import { NavLink } from "react-router-dom"
+import ParticleBackground from "../components/particle"
 
 
 function Home() {
   return (
     <div style={{
-      backgroundImage: `url(${background})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
       width: '100vw',
       height: '100vh',
       flex: 1,
@@ -26,8 +24,9 @@ function Home() {
       display: 'flex',
       cursor: `url(${cur}), auto`
     }}>
+      <ParticleBackground />
       <div style={{
-        flex:14,  
+        flex:14,
         }}>
         <div style={{
           flexDirection: 'row', 
@@ -40,9 +39,11 @@ function Home() {
           width: '10%',
           height: '10%'
         }}>
-            <a href = "/about_me">
+          <NavLink to="/about_me">
+            <a href="">
               <img src={about_me} style={{width: '50%', height: '50%'}}></img>
             </a>
+          </NavLink>
             <div>About me</div>
         </div>
         <div style={{
@@ -90,9 +91,11 @@ function Home() {
           width: '10%',
           height: '10%'
         }}>
-            <a href = "/works">
-              <img src={work} style={{width: '50%', height: '50%', borderRadius: 20}}></img>
+          <NavLink to="/works">
+            <a href="">
+            <img src={work} style={{width: '50%', height: '50%', borderRadius: 20}}></img>
             </a>
+          </NavLink>
             <div>Works</div>
         </div>
         </div>
@@ -112,10 +115,12 @@ function Home() {
             height: '10%',
             marginTop: '1%'
           }}>
-              <a href = "/photos">
-                <img src={photo} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
-              </a>
-              <div>Photos</div>
+          <NavLink to="/photos">
+            <a href="">
+              <img src={photo} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
+            </a>
+          </NavLink>
+          <div>Photos</div>
         </div>
         <div style={{
           textAlign: 'center',
@@ -123,9 +128,11 @@ function Home() {
           height: '10%',
           marginTop: '1%'
         }}>
-            <a href = "/contact">
+          <NavLink to="/contact">
+            <a href="">
               <img src={contact} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
             </a>
+          </NavLink>
             <div>Contact</div>
         </div>
         <div style={{
@@ -134,9 +141,11 @@ function Home() {
           height: '10%',
           marginTop: '1%'
         }}>
-            <a href = "/music">
-              <img src={music} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
+          <NavLink to="/music">
+            <a href="">
+            <img src={music} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
             </a>
+          </NavLink>
             <div>Music</div>
         </div>
       </div>

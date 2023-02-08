@@ -11,7 +11,7 @@ function About() {
             {sentence.map((letter, index) =>{
                 return (
                     <Textspan style={{fontSize: 20}} key={index}>
-                        {letter === " " ? "\u00A0" : letter}
+                        {letter === " " ? "\u00A0" : <div style={{color: 'white'}}>{letter}</div>}
                     </Textspan>
                 )
             })}
