@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState, } from 'react';
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import Header from '../header'
 
 
@@ -91,50 +91,56 @@ function Home() {
         display: 'flex',
         alignItems: 'center'
       }}>
-        <a href='/about_me'>
-          <img 
-          onMouseOut={()=> setHover(1)}
-          onMouseOver={()=>setHover(1.3)}
-          style={{
-            marginBottom: "-10%",
-            width: '20%', 
-            minWidth: 260, 
-            maxWidth: 350,
-            position: 'absolute',
-            left: "10%",
-            top: "50%",
-            transform: `translate(${mousePos.x * 0.02}px,${y_1 + mousePos.y* 0.02}px) scale(${hover},${hover})`, 
-          }} src={require('../../images/who.png')}/>
-        </a>
-        <a href='/works'>
-          <img 
-          onMouseOut={()=> setHover2(1)}
-          onMouseOver={()=>setHover2(1.3)}
-          style={{
-            width: '25%', 
-            minWidth: 300, 
-            maxWidth: 350,
-            position: 'absolute',
-            left: "35%",
-            top: "20%",
-            transform: `translate(${mousePos.x * 0.01}px,${y_2 + mousePos.y* 0.01}px) scale(${hover2},${hover2})`
-          }} src={require('../../images/work.png')}/>
-        </a>
-        <a href='/contact'>
-          <img 
-          onMouseOut={()=> setHover3(1)}
-          onMouseOver={()=>setHover3(1.3)}
-          style={{
-            marginBottom: "-10%",
-            width: '30%', 
-            minWidth: 300, 
-            maxWidth: 350,
-            position: 'absolute',
-            left: "70%",
-            top: "40%",
-            transform: `translate(${mousePos.x * 0.03}px,${y_3 + mousePos.y* 0.03}px) scale(${hover3},${hover3})`
-          }} src={require('../../images/contact.png')}/>
-        </a>
+        <NavLink to="/about_me">
+          <a href=''>
+            <img 
+            onMouseOut={()=> setHover(1)}
+            onMouseOver={()=>setHover(1.3)}
+            style={{
+              marginBottom: "-10%",
+              width: '20%', 
+              minWidth: 260, 
+              maxWidth: 350,
+              position: 'absolute',
+              left: "10%",
+              top: "50%",
+              transform: `translate(${mousePos.x * 0.02}px,${y_1 + mousePos.y* 0.02}px) scale(${hover},${hover})`, 
+            }} src={require('../../images/who.png')}/>
+          </a>
+        </NavLink>
+        <NavLink to="/works">
+          <a href="">
+            <img 
+            onMouseOut={()=> setHover2(1)}
+            onMouseOver={()=>setHover2(1.3)}
+            style={{
+              width: '25%', 
+              minWidth: 300, 
+              maxWidth: 350,
+              position: 'absolute',
+              left: "35%",
+              top: "20%",
+              transform: `translate(${mousePos.x * 0.01}px,${y_2 + mousePos.y* 0.01}px) scale(${hover2},${hover2})`
+            }} src={require('../../images/work.png')}/>
+          </a>
+        </NavLink>
+        <NavLink to="/contact">
+          <a href=''>
+            <img 
+            onMouseOut={()=> setHover3(1)}
+            onMouseOver={()=>setHover3(1.3)}
+            style={{
+              marginBottom: "-10%",
+              width: '30%', 
+              minWidth: 300, 
+              maxWidth: 350,
+              position: 'absolute',
+              left: "70%",
+              top: "40%",
+              transform: `translate(${mousePos.x * 0.03}px,${y_3 + mousePos.y* 0.03}px) scale(${hover3},${hover3})`
+            }} src={require('../../images/contact.png')}/>
+          </a>
+        </NavLink>
       </div>
       <div style={{flex: 1, alignSelf: 'center', width: '20%', }}>
         {

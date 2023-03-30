@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -9,13 +10,12 @@ const Header = () => {
                 flexDirection: 'row',
                 display: 'flex',
             }}>
-                <a href='/'>
-                <img style={{width: 200, heigh: 200}} src={require('../../images/logo.png')}/>
-                </a>
+                <NavLink to="/">
+                    <a href='/'>
+                        <img style={{width: 200, heigh: 200}} src={require('../../images/logo.png')}/>
+                    </a>
+                </NavLink>
                 <text>Menu</text>
-                {/* <b>
-                ({mousePos.x}, {mousePos.y})
-                </b> */}
         </div>
     )
 }
