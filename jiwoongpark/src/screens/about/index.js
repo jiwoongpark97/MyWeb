@@ -309,11 +309,11 @@ const About = () => {
                   things. {'\u000A'}
                 </text>
               </span>
-              <div style={{bottom: '10%', position: 'absolute', right: '80%', left: '20%'}}>
+              <div style={{bottom: '10%', position: 'absolute', right: '50%', left: '50%'}}>
                 <a href={pdf} target="_blank" onMouseOver={() => setHover('underline')} onMouseOut={() => setHover('none')}>
                     <Textspan>
-                        <text style={{fontFamily: 'Lucky', fontSize: 20, textDecoration: hover }}>
-                            Resume
+                        <text style={{fontFamily: 'Lucky', fontSize: 20, textDecoration: hover, color: 'black' }}>
+                            Resume↓
                         </text>
                     </Textspan>
                 </a>
