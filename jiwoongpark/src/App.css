@@ -36,3 +36,51 @@
     transform: rotate(360deg);
   }
 }
+
+.pages{
+  width: 100vw;
+  height: 100vh;
+}
+.page1{
+  background-position: 'center';
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  width: 100vw;
+  height: 100vh;
+}
+.page2{
+  background-position: 'center';
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  /* background-color: black; */
+  width: 100vw;
+  height: 100vh;
+}
+
+.page3{
+  background-position: 'center';
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  /* background-color: black; */
+  color: white;
+  width: 100vw;
+  height: 100vh;
+}
+.page4{
+  background-position: 'center';
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  width: 100vw;
+  height: 100vh;
+}
+
+@font-face {
+  font-family: "Lucky";   /*Can be any text*/
+  src: local("LuckiestGuy-Regular"),
+    url("./fonts/LuckiestGuy-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Sparky";   /*Can be any text*/
+  src: local("SparkyStonesRegular-BW6ld"),
+    url("./fonts/SparkyStonesRegular-BW6ld.ttf") format("truetype");
+}

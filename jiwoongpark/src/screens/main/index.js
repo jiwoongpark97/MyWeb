@@ -1,154 +1,162 @@
-import background from "../../images/background.jpg"
-import about_me from '../../images/36709/ios-icons/png-192/files.png'
-import contact from '../../images/36709/ios-icons/png-192/contact.png'
-import music from '../../images/36709/ios-icons/png-192/music.png'
-import work from '../../images/36709/ios-icons/png-192/work.png'
-import photo from '../../images/36709/ios-icons/png-192/photo.png'
-import github from '../../images/github.png'
-import linkedin from '../../images/linkedin.png'
-import insta from '../../images/insta.png'
-import fb from '../../images/fb.png'
 import React from 'react'
-import cur from '../../cursor50.png'
-import { NavLink } from "react-router-dom"
-import ParticleBackground from "../components/particle"
+import { useEffect, useState, } from 'react';
+import { useNavigate } from "react-router-dom"
+import Header from '../header'
 
 
 function Home() {
+  const [mousePos, setMousePos] = useState({});
+  const navigate = useNavigate();
+  const [y_1, setY1] = useState(0);
+  const [y_2, setY2] = useState(0);
+  const [y_3, setY3] = useState(0);
+  const [check, setCheck] = useState(true);
+  const [check2, setCheck2] = useState(true);
+  const [check3, setCheck3] = useState(true);
+  const [check4, setCheck4] = useState(true);
+  const [hover, setHover] = useState(1);
+  const [hover2, setHover2] = useState(1);
+  const [hover3, setHover3] = useState(1);
+
+  useEffect(() => {
+    if(check){
+      setY1(y_1 => y_1 + 10)
+    }else{
+      setY1(y_1 => y_1 - 10)
+    }
+  },[check])
+
+  useEffect(() => {
+    if(check2){
+      setY2(y_2 => y_2 + 10)
+    }else{
+      setY2(y_2 => y_2 - 10)
+    }
+  },[check2])
+
+  useEffect(() => {
+    if(check3){
+      setY3(y_3 => y_3 + 10)
+    }else{
+      setY3(y_3 => y_3 - 10)
+    }
+  },[check3])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCheck(check => !check)
+    }, 600)
+    const timer2 = window.setInterval(() => {
+      setCheck2(check2 => !check2)
+    }, 800)
+    const timer3 = window.setInterval(() => {
+      setCheck3(check3 => !check3)
+    }, 1000)
+    const timer4 = window.setInterval(() => {
+      setCheck4(check4 => !check4)
+    }, 900)
+    const handleMouseMove = (event) => {
+      setMousePos({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener(
+        'mousemove',
+        handleMouseMove
+      );
+      window.clearInterval(timer)
+      window.clearInterval(timer2)
+      window.clearInterval(timer3)
+      window.clearInterval(timer4)
+    };
+  }, []);
+
   return (
     <div style={{
-      width: '100vw',
-      height: '100vh',
-      flex: 1,
-      flexDirection: 'column',
+      flex: 1, 
+      width: "100vw", 
+      height: "100vh", 
+      alignItems: 'center',
+      justifyContent: 'center',
       display: 'flex',
-      cursor: `url(${cur}), auto`
+      flexDirection: "column",
     }}>
-      <ParticleBackground />
+      <Header />
       <div style={{
-        flex:14,
-        }}>
-        <div style={{
-          flexDirection: 'row', 
-          display: 'flex', 
-          justifyContent: 'space-evenly',
-          marginTop: 30
-        }}>
-        <div style={{
-          textAlign: 'center',
-          width: '10%',
-          height: '10%'
-        }}>
-          <NavLink to="/about_me">
-            <a href="">
-              <img src={about_me} style={{width: '50%', height: '50%'}}></img>
-            </a>
-          </NavLink>
-            <div>About me</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%',
-          height: '10%'
-        }}>
-            <a href = "https://github.com/EricPark1/Works" target="_blank">
-              <img src={github} style={{width: '50%', height: '50%'}}></img>
-            </a>
-            <div>Github</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%',
-          height: '10%'
-        }}>
-            <a href = "https://www.linkedin.com/in/ji-woong-park/" target="_blank">
-              <img src={linkedin} style={{width: '50%', height: '50%'}}></img>
-            </a>
-            <div>Linkedin</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%',
-          height: '10%'
-        }}>
-            <a href = "https://www.instagram.com/j1__w00ng/" target="_blank">
-              <img src={insta} style={{width: '50%', height: '50%'}}></img>
-            </a>
-            <div>Instagram</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%',
-          height: '10%'
-        }}>
-            <a href = "https://www.facebook.com/jiwoongpark11/" target="_blank">
-              <img src={fb} style={{width: '50%', height: '50%', borderRadius: 28}}></img>
-            </a>
-            <div>Facebook</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%',
-          height: '10%'
-        }}>
-          <NavLink to="/works">
-            <a href="">
-            <img src={work} style={{width: '50%', height: '50%', borderRadius: 20}}></img>
-            </a>
-          </NavLink>
-            <div>Works</div>
-        </div>
-        </div>
+        flex: 2,
+        justifyContent: 'space-around', 
+        flexDirection: 'row',
+        display: 'flex',
+        alignItems: 'center'
+      }}>
+        <a href='/about_me'>
+          <img 
+          onMouseOut={()=> setHover(1)}
+          onMouseOver={()=>setHover(1.3)}
+          style={{
+            marginBottom: "-10%",
+            width: '20%', 
+            minWidth: 260, 
+            maxWidth: 350,
+            position: 'absolute',
+            left: "10%",
+            top: "50%",
+            transform: `translate(${mousePos.x * 0.02}px,${y_1 + mousePos.y* 0.02}px) scale(${hover},${hover})`, 
+          }} src={require('../../images/who.png')}/>
+        </a>
+        <a href='/works'>
+          <img 
+          onMouseOut={()=> setHover2(1)}
+          onMouseOver={()=>setHover2(1.3)}
+          style={{
+            width: '25%', 
+            minWidth: 300, 
+            maxWidth: 350,
+            position: 'absolute',
+            left: "35%",
+            top: "20%",
+            transform: `translate(${mousePos.x * 0.01}px,${y_2 + mousePos.y* 0.01}px) scale(${hover2},${hover2})`
+          }} src={require('../../images/work.png')}/>
+        </a>
+        <a href='/contact'>
+          <img 
+          onMouseOut={()=> setHover3(1)}
+          onMouseOver={()=>setHover3(1.3)}
+          style={{
+            marginBottom: "-10%",
+            width: '30%', 
+            minWidth: 300, 
+            maxWidth: 350,
+            position: 'absolute',
+            left: "70%",
+            top: "40%",
+            transform: `translate(${mousePos.x * 0.03}px,${y_3 + mousePos.y* 0.03}px) scale(${hover3},${hover3})`
+          }} src={require('../../images/contact.png')}/>
+        </a>
       </div>
-      <div style={{flex:2, 
-        backgroundColor: 'rgba(47, 79, 79, 0.6)',
-        display: 'flex', 
-        justifyContent: 'space-evenly',
-        borderRadius: 50,
-        marginBottom: '1%',
-        marginLeft: '3%',
-        marginRight: '3%'
-        }}>
-        <div style={{
-            textAlign: 'center',
-            width: '10%', 
-            height: '10%',
-            marginTop: '1%'
-          }}>
-          <NavLink to="/photos">
-            <a href="">
-              <img src={photo} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
-            </a>
-          </NavLink>
-          <div>Photos</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%', 
-          height: '10%',
-          marginTop: '1%'
-        }}>
-          <NavLink to="/contact">
-            <a href="">
-              <img src={contact} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
-            </a>
-          </NavLink>
-            <div>Contact</div>
-        </div>
-        <div style={{
-          textAlign: 'center',
-          width: '10%', 
-          height: '10%',
-          marginTop: '1%'
-        }}>
-          <NavLink to="/music">
-            <a href="">
-            <img src={music} style={{width: '5vw', height: '500%', marginTop: 10}}></img>
-            </a>
-          </NavLink>
-            <div>Music</div>
-        </div>
+      <div style={{flex: 1, alignSelf: 'center', width: '20%', }}>
+        {
+          check4 ? 
+          <img style={{
+             width: '70%',
+             minWidth: 300
+          }} src={require('../../images/jiwoong.png')} />
+          :
+          <img style={{
+            width: '70%',
+            minWidth: 300,
+            
+         }} src={require('../../images/jiwoong2.png')} />
+        }
       </div>
+      
+      {/* <div style={{
+        backgroundImage: `url(${Third})`,
+        flex: 1,
+        backgroundColor: `rgba(255,255,255,0.1)`
+      }}>Hello</div> */}
     </div>
   );
 }
