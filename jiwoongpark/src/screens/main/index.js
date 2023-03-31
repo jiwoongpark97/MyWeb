@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState, } from 'react';
 import { NavLink, useNavigate } from "react-router-dom"
 import Header from '../header'
-
+import Background from '../../images/background.gif'
 
 function Home() {
   const [mousePos, setMousePos] = useState({});
@@ -82,6 +82,9 @@ function Home() {
       justifyContent: 'center',
       display: 'flex',
       flexDirection: "column",
+      backgroundImage: `url(${Background})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }}>
       <Header />
       <div style={{

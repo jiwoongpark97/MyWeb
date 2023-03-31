@@ -13,8 +13,7 @@ import { useNavigate } from "react-router-dom"
 function App() {
 
   return (
-    <div style={{flex: 1, backgroundImage: `url(${Background})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', display: 'flex', flexDirection: 'column'}}>
-      <div style={{flex: 2, height: '100vh', display: 'flex', width: '100vw',}}>
+    
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
@@ -25,8 +24,7 @@ function App() {
             <Route exact path="/works" element={<Works/>}></Route>
           </Routes>
         </Router>
-      </div>
-    </div>
+    
   )
 }
 

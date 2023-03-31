@@ -21,7 +21,7 @@ import {
 import "../../App.css";
 import Textspan from "./textspan";
 import Header from "../header";
-import background from "../../images/cloud.svg";
+import background from "../../images/cloud.gif";
 import pdf from '../../resume/Resume.pdf'
 
 const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
@@ -58,7 +58,7 @@ const About = () => {
         flexDirection: "column",
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
-        zIndex: 2,
+        backgroundPosition: 'center'
       }}
     >
       <Header />
@@ -181,6 +181,9 @@ const About = () => {
                     height: "66.66666vw",
                     maxWidth: 500,
                     maxHeight: 666.6666,
+                    marginLeft: 30,
+                    borderRadius: 40,
+                    marginTop: 40
                   }}
                   src={require("../../images/me.jpg")}
                 />

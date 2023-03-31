@@ -84,3 +84,30 @@
   src: local("SparkyStonesRegular-BW6ld"),
     url("./fonts/SparkyStonesRegular-BW6ld.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Mokoto";   /*Can be any text*/
+  src: local("Mokoto"),
+    url("./fonts/Mokoto.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit-eb";   /*Can be any text*/
+  src: local("Kanit-ExtraBold"),
+    url("./fonts/Kanit-ExtraBold.ttf") format("truetype");
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: scale(1, 0);
+  transition: all 500ms ease-in-out;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: scale(1,1);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: scale(1,0);
+}
