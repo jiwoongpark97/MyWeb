@@ -116,13 +116,9 @@ function Works() {
 
   const customStyles = {
     content: {
-      width: "50vw",
-      height: "80vh",
-      maxWidth: 1000,
-      maxHeight: 1000,
-      minWidth: 800,
-      minHeight: 600,
-      top: '50%',
+      width: 810,
+      height: 500,
+      top: '57%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
@@ -149,6 +145,7 @@ function Works() {
         backgroundPosition: "center",
       }}
     >
+      <img style={{position: 'absolute', bottom: '8%', right: '50%', zIndex: 2}} src={require('../../images/tap.gif')} />
       <Modal closeTimeoutMS={500} isOpen={modal} contentLabel={choice} style={customStyles} onRequestClose={() => {
         setModal(false)
         setChoice(null)
@@ -168,10 +165,10 @@ function Works() {
       <Header />
       <img style={{
         position: 'absolute',
-        width: 1100,
-        height: 700,
+        width: 900,
+        height: 600,
         transform: 'translate(-50%, -50%)',
-        top: '57%',
+        top: '58%',
         left: '50%',
       }}
         src={require('../../images/tv.png')}></img>
@@ -182,12 +179,7 @@ function Works() {
           flexDirection: "row",
           display: "flex",
           alignItems: "center",
-          width: 1000,
-          height: 800,
-          maxWidth: 1000,
-          maxHeight: 800,
-          minWidth: 800,
-          minHeight: 600,
+          width: 850,
         }}
       >
         <AwesomeSlider organicArrows={false} animation="cubeAnimation">
