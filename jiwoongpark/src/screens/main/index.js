@@ -139,7 +139,7 @@ function Home() {
               minWidth: 300, 
               maxWidth: 350,
               position: 'absolute',
-              left: "70%",
+              right: "10%",
               top: "40%",
               transform: `translate(${mousePos.x * 0.03}px,${y_3 + mousePos.y* 0.03}px) scale(${hover3},${hover3})`
             }} src={require('../../images/contact.png')}/>
