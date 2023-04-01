@@ -3,6 +3,7 @@ import { useEffect, useState, } from 'react';
 import { NavLink, useNavigate } from "react-router-dom"
 import Header from '../header'
 import Background from '../../images/background.gif'
+import "../../App.css";
 
 function Home() {
   const [mousePos, setMousePos] = useState({});
@@ -84,7 +85,7 @@ function Home() {
       flexDirection: "column",
       backgroundImage: `url(${Background})`,
       backgroundSize: 'cover',
-      backgroundPosition: 'center'
+      backgroundPosition: 'center',
     }}>
       <Header />
       <div style={{

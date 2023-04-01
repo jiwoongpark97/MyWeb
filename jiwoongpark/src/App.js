@@ -7,13 +7,12 @@ import Contact from "./screens/contact/"
 import Music from "./screens/music/"
 import Photos from "./screens/photos/"
 import Works from "./screens/works/"
-import Background from './images/background.png'
-import { useNavigate } from "react-router-dom"
+import cur from './images/cursor.png'
 
 function App() {
 
   return (
-    
+    <div className='main'>
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
@@ -24,7 +23,7 @@ function App() {
             <Route exact path="/works" element={<Works/>}></Route>
           </Routes>
         </Router>
-    
+    </div>
   )
 }
 

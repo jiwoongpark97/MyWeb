@@ -8,10 +8,12 @@ import "react-awesome-slider/dist/custom-animations/cube-animation.css";
 import { useRef, useState } from "react";
 import "../../App.css";
 import Modal from "react-modal";
+import cus from '../../images/cursor.png'
 
 function Works() {
   const [choice, setChoice] = useState(null);
   const [modal, setModal] = useState(false);
+  const [link2, setLink] = useState(null);
 
   const render = (data) => {
     var name = null;
@@ -23,6 +25,7 @@ function Works() {
     var image = null;
     var position = null;
     var rows = null;
+    var link_to = null;
 
     if(data === "safe"){
       image = require("../../images/P1-1.jpeg")
@@ -35,6 +38,7 @@ function Works() {
           <div>POSITION</div>
         </div>
       )
+      link_to = "https://github.com/qkrwldnd97/Works/tree/main/Kotlin/Safe%20route%20for%20transportation%20app"
       name = "Safe First Route (COVID-19)"
       category = "Contest"
       year = "\n2020"
@@ -44,6 +48,7 @@ function Works() {
       "In 2020, I participated in the \"Big Contest\" held in Korea, which required contestants to develop creative software based on various data sets provided before and after the COVID-19 pandemic. My contribution to this competition involved analyzing the given data sets and assessing the vulnerability of COVID-19 in different regions. Subsequently, I developed an application that could track a user's current location and provide the safest route to their destination based on the vulnerability of the regions. The app's algorithm considers various modes of transportation, including buses and subways. Additionally, the application allows the user to balance their preference for time and cost with the vulnerability of their selected route."
       position = "Data analyst \n App developer"
     }else if(data === "dictionary"){
+      link_to = "https://github.com/qkrwldnd97/Works/tree/main/React%20Native/dictionary%20App"
       image = require("../../images/dict.jpg")
       name = "Advanced Dictionary"
       category = "Self project"
@@ -53,6 +58,7 @@ function Works() {
       description = "During my time in the military, I created a mobile application to help my comrades who were struggling to read English books. Initially, the app was designed to function as a pdf viewer with a dictionary feature. However, I later expanded the functionality by making all the words in the pdf clickable. When a user clicks on a word, a pop-up box appears with its definition and example sentences. Furthermore, I added a database feature that tracks the words that users have searched and added those words to the app's test library. The app randomly tests users with words from the test library until they have passed the same word three times. To make the app accessible to more users, I used React Native to make it cross-platform. Finally, I utilized MySQL to manage all the app\'s data."
       position = "Full stack developer"
     }else if(data === "argus"){
+      link_to = "https://github.com/qkrwldnd97/Argus"
       image = require("../../images/argus.gif")
       name = "Argus (Environmental activity monitoring app)"
       category = "Group project"
@@ -62,6 +68,7 @@ function Works() {
       description = "It has become increasingly important to raise awareness regarding environmental issues. With the recent increase of climate change and global warming having an immense impact on our world today, many historical data, trends and research on environmental activities have become archaic, outdated and hard to use. Environmental trends are becoming more irregular and hard to understand and anticipate. Existing solutions, such as the global climate monitor and monitors from NOAA and Weather.com, have certain limitations that may make it hard for users to utilize their applications. Many environmental monitors existing today often only focus on only one environmental issue or activity. And these monitors have a user interface and front end that is not intuitive or user-friendly and have responsiveness issues.Because of this, we have decided to create Argus, an accurate all-in-one environmental monitoring app which is designed to be minimal, intuitive, and fast to use. With Argus, users will be informed of the climate activity and other environmental activities such as current and future value of temperatures, rising sea levels, and greenhouse gas emissions all in one place."
       position = "Full stack developer"
     }else{
+      link_to = "https://github.com/yujongu/campus-buddy"
       image = require("../../images/campus.png")
       name = "Campus Buddy (Scheduling app)"
       category = "Group project"
@@ -74,6 +81,9 @@ function Works() {
 
     return (
       <div style={{flex: 1, marginTop: '8%', marginBottom: '5%', textAlign: 'center'}}>
+        <a href={link_to+""} target="_blank">
+          <img style={{width: 80, height: 80, position: 'absolute', top: 20, left: 20}} src = {require('../../images/git.png')}/>
+        </a>
         <div style={{flex: 1,textAlign: 'start', display: 'flex', flexDirection: 'column',}}>
           <img src={image} style={{width: '40vw', height: '60vh', minWidth: 600, minHeight: 500, alignSelf: 'center', borderRadius: 30}}/>
           <div>
@@ -116,7 +126,7 @@ function Works() {
 
   const customStyles = {
     content: {
-      width: 810,
+      width: 850,
       height: 500,
       top: '57%',
       left: '50%',
@@ -124,6 +134,7 @@ function Works() {
       bottom: 'auto',
       marginRight: '-50%',     
       transform: 'translate(-50%, -50%)',
+      cursor: `url(${cus}), auto`
     },
     overlay: {
       backgroundColor: "#ffffff00"
@@ -145,7 +156,7 @@ function Works() {
         backgroundPosition: "center",
       }}
     >
-      <img style={{position: 'absolute', bottom: '8%', right: '50%', zIndex: 2}} src={require('../../images/tap.gif')} />
+      {/* r<img style={{position: 'absolute', bottom: '8%', right: '50%', zIndex: 2}} src={require('../../images/tap.gif')} /> */}
       <Modal closeTimeoutMS={500} isOpen={modal} contentLabel={choice} style={customStyles} onRequestClose={() => {
         setModal(false)
         setChoice(null)
@@ -165,7 +176,7 @@ function Works() {
       <Header />
       <img style={{
         position: 'absolute',
-        width: 900,
+        width: 950,
         height: 600,
         transform: 'translate(-50%, -50%)',
         top: '58%',
