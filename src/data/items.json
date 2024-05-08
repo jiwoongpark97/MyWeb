@@ -1,26 +1,74 @@
 [
     {
       "id": 1,
-      "name": "Book",
+      "name": "JavaScript (ES6)",
       "price": 10.99,
-      "imgUrl": "/imgs/book.jpg"
+      "imgUrl": "/imgs/computer.jpg"
     },
     {
       "id": 2,
-      "name": "Computer",
+      "name": "Kotlin",
       "price": 1199,
       "imgUrl": "/imgs/computer.jpg"
     },
     {
       "id": 3,
-      "name": "Banana",
+      "name": ".NET Core",
       "price": 1.05,
-      "imgUrl": "/imgs/banana.jpg"
+      "imgUrl": "/imgs/computer.jpg"
     },
     {
       "id": 4,
-      "name": "Car",
+      "name": "Node JS",
       "price": 14000,
-      "imgUrl": "/imgs/car.jpg"
-    }
+      "imgUrl": "/imgs/computer.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Django",
+        "price": 10.99,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 6,
+        "name": "HTML5/CSS",
+        "price": 1199,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 7,
+        "name": "REACT JS",
+        "price": 1.05,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 8,
+        "name": "TypeScript",
+        "price": 14000,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 9,
+        "name": "Java (Spring framework)",
+        "price": 1.05,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Object Oriented Programming",
+        "price": 14000,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 11,
+        "name": "Problem-solving",
+        "price": 1.05,
+        "imgUrl": "/imgs/computer.jpg"
+      },
+      {
+        "id": 12,
+        "name": "Git",
+        "price": 14000,
+        "imgUrl": "/imgs/computer.jpg"
+      }
   ]
