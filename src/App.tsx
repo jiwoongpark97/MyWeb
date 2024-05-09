@@ -7,11 +7,11 @@ import { Navbar } from './components/Navbar'
 import { ShoppingCartProvider } from './context/ShoppingCartContext'
 
 function App() {
-  
+
   return (
     <ShoppingCartProvider>
       <Navbar />
-      <Container className='mb-4'>
+      <Container fluid className='vh-100 px-0 overflow-auto' style={{ backgroundImage: 'url(../imgs/background.gif)', backgroundSize: 'cover' }}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/store' element={<Store />} />
