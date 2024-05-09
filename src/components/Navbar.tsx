@@ -1,23 +1,29 @@
 import { Container, Navbar as NavbarBs, Nav, Button } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import Image from 'react-bootstrap/Image'
+import '../App.css'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export function Navbar() {
     const { openCart, cartQuantity } = useShoppingCart()
+    const [activeNav, setActiveNav] = useState("home");
 
     return (
-        <NavbarBs sticky='top' className='bg-white shadow-sm mb-3'>
-            <Container>
-                <Nav defaultActiveKey='/' as='ul' className='me-auto'>
-                    <Nav.Link href='/'>
+        <NavbarBs sticky='top' className='bg-white shadow-sm'>
+            <Container className='d-flex justify-content-between'>
+                <Nav defaultActiveKey={activeNav} as='ul' onSelect={(eventKey, _) => setActiveNav(eventKey!!)}>
+                    <Nav.Link as={Link} to='/' eventKey={"home"}>
                         Home
                     </Nav.Link>
-                    <Nav.Link href='/store'>
+                    <Nav.Link as={Link} to='/store' eventKey={"store"}>
                         Store
                     </Nav.Link>
-                    <Nav.Link href='/about'>
+                    <Nav.Link as={Link} to='/about' eventKey={"about"}>
                         About
                     </Nav.Link>
                 </Nav>
+                <Image src='../imgs/logo.png' width={100} height={100} />
                 <Button style={{ width: '3rem', height: '3rem', position: 'relative' }} variant='outline-primary' className='rounded-circle' onClick={openCart}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
