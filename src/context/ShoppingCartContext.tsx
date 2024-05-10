@@ -20,6 +20,8 @@ type ShoppingCartContext = {
     removeFromCart: (id: number) => void
     cartQuantity: number
     cartItems: CartItem[]
+    getActiveNav: () => string
+    setActiveNav: (nav: string) => void
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
@@ -32,11 +34,19 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart", [])
+    const [activeNav, setNav] = useLocalStorage<string>("activeNav", "home")
 
     const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
     const openCart = () => setIsOpen(true)
     const closeCart = () => setIsOpen(false)
 
+    function getActiveNav() {
+        return activeNav;
+    }
+
+    function setActiveNav(nav: string) {
+        setNav(nav);
+    }
 
     function getItemQuantity(id: number) {
         return cartItems.find(item => item.id === id)?.quantity || 0
@@ -80,7 +90,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         })
     }
 
-    return <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart }}>
+    return <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart, getActiveNav, setActiveNav }}>
         {children}
         <ShoppingCart isOpen={isOpen} />
     </ShoppingCartContext.Provider>
