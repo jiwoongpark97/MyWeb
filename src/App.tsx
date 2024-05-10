@@ -10,14 +10,16 @@ function App() {
 
   return (
     <ShoppingCartProvider>
-      <Navbar />
-      <Container fluid className='vh-100 px-0 overflow-auto' style={{ backgroundImage: 'url(../imgs/background.gif)', backgroundSize: 'cover' }}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/store' element={<Store />} />
-          <Route path='/about' element={<About />} />
-        </Routes>
-      </Container>
+      <div className='vh-100 vw-100 overflow-scroll' style={{ backgroundImage: 'url(../imgs/background.gif)', backgroundSize: 'cover' }}>
+        <Navbar />
+        <Container fluid className='p-5'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/store' element={<Store />} />
+            <Route path='/about' element={<About />} />
+          </Routes>
+        </Container>
+      </div>
     </ShoppingCartProvider>
   )
 }
