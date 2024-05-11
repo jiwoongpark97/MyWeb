@@ -13,7 +13,7 @@ export function Home() {
           alt="Image One"
         />
         <Carousel.Caption className='text-dark' style={{ position: 'relative' }}>
-          <h3>Projects</h3>
+          <h3>Argus</h3>
           <p>Few Projects I have done.</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -23,8 +23,8 @@ export function Home() {
           src={Campus_Buddy}
           alt="Image One"
         />
-        <Carousel.Caption className='text-dark'>
-          <h3>Projects</h3>
+        <Carousel.Caption className='text-dark' style={{ position: 'relative' }}>
+          <h3>Campus Buddy</h3>
           <p>Few Projects I have done.</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -34,8 +34,8 @@ export function Home() {
           src={dictionaryApp}
           alt="Image One"
         />
-        <Carousel.Caption className='text-dark'>
-          <h3>Projects</h3>
+        <Carousel.Caption className='text-dark' style={{ position: 'relative' }}>
+          <h3>Dictionary</h3>
           <p>Few Projects I have done.</p>
         </Carousel.Caption>
       </Carousel.Item>
