@@ -1,0 +1,20 @@
+[
+    {
+      "src": "/imgs/Argus.png",
+      "url": "https://github.com/qkrwldnd97/Argus",
+      "title": "Argus",
+      "description": "This is the monitoring tool"
+    },
+    {
+        "src": "/imgs/Campus_Buddy.png",
+        "url": "https://github.com/qkrwldnd97/campus-buddy",
+        "title": "Campus Buddy",
+        "description": "This is the Campus buddy"
+    },
+    {
+        "src": "/imgs/dictionaryApp.jpg",
+        "url": "https://github.com/qkrwldnd97/Works/tree/main/React%20Native/dictionary%20App",
+        "title": "Dictionary App",
+        "description": "This is the dictionary tool"
+    }
+  ]
