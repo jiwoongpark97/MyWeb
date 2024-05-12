@@ -12,10 +12,11 @@ export function Home() {
               className="w-100"
               src={item.src}
               alt="Image One"
+              onClick={() => window.open(item.url, '_blank')}
             />
             <Carousel.Caption className='text-dark' style={{ position: 'relative', right: 0, left: 0 }}>
               <h3>{item.title}</h3>
-              <p>{item.description}</p>
+              <p><small>{item.description}</small></p>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
