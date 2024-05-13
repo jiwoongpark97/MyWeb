@@ -3,72 +3,72 @@
       "id": 1,
       "name": "JavaScript (ES6)",
       "price": 10.99,
-      "imgUrl": "/imgs/computer.jpg"
+      "imgUrl": "/imgs/storeItems/javascript.png"
     },
     {
       "id": 2,
       "name": "Kotlin",
       "price": 1199,
-      "imgUrl": "/imgs/computer.jpg"
+      "imgUrl": "/imgs/storeItems/kotlin.png"
     },
     {
       "id": 3,
       "name": ".NET Core",
       "price": 1.05,
-      "imgUrl": "/imgs/computer.jpg"
+      "imgUrl": "/imgs/storeItems/.net_core.png"
     },
     {
       "id": 4,
       "name": "Node JS",
       "price": 14000,
-      "imgUrl": "/imgs/computer.jpg"
+      "imgUrl": "/imgs/storeItems/nodejs.png"
     },
     {
         "id": 5,
         "name": "Django",
         "price": 10.99,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/django.png"
       },
       {
         "id": 6,
         "name": "HTML5/CSS",
         "price": 1199,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/html_css.png"
       },
       {
         "id": 7,
         "name": "REACT JS",
         "price": 1.05,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/reactJS.png"
       },
       {
         "id": 8,
         "name": "TypeScript",
         "price": 14000,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/typescript.png"
       },
       {
         "id": 9,
         "name": "Java (Spring framework)",
         "price": 1.05,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/spring.png"
       },
       {
         "id": 10,
         "name": "Object Oriented Programming",
         "price": 14000,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/oop.png"
       },
       {
         "id": 11,
         "name": "Problem-solving",
         "price": 1.05,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/problem-solving.png"
       },
       {
         "id": 12,
         "name": "Git",
         "price": 14000,
-        "imgUrl": "/imgs/computer.jpg"
+        "imgUrl": "/imgs/storeItems/git.png"
       }
   ]

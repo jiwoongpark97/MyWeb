@@ -1,6 +1,6 @@
 import { Carousel } from 'react-bootstrap';
 import projectList from '../data/projects.json'
-import firstSlide from '../../public/imgs/default.jpg'
+import firstSlide from '/imgs/carousel/default.jpg'
 
 
 export function Home() {

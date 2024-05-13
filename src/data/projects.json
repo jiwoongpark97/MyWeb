@@ -1,18 +1,18 @@
 [
     {
-      "src": "/imgs/Argus.png",
+      "src": "/imgs/carousel/Argus.png",
       "url": "https://github.com/qkrwldnd97/Argus",
       "title": "Argus",
       "description": "The user-friendly environmental monitoring app predicts climate events like earthquakes, greenhouse gas emissions, tsunamis, and more, making it easy to stay updated on real-time climate activity."
     },
     {
-        "src": "/imgs/Campus_Buddy.png",
+        "src": "/imgs/carousel/Campus_Buddy.png",
         "url": "https://github.com/qkrwldnd97/campus-buddy",
         "title": "Campus Buddy",
         "description": "Campus Buddy simplifies college life by aiding time management and teamwork. With easy schedule comparisons and gamified features, students can effortlessly organize group activities while enjoying personal growth."
     },
     {
-        "src": "/imgs/dictionaryApp.jpg",
+        "src": "/imgs/carousel/dictionaryApp.jpg",
         "url": "https://github.com/qkrwldnd97/Works/tree/main/React%20Native/dictionary%20App",
         "title": "GoogolPlex",
         "description": "GoogolPlex is your go-to app for understanding English books effortlessly. Simply upload a PDF, click on unfamiliar words, and instantly get definitions and examples. Build your vocabulary, take quizzes, and conquer English reading with ease!"
