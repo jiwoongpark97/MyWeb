@@ -18,9 +18,9 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
         <Modal
             show={show}
             onHide={onHide}
-            size="lg"
+            size="xl"
             aria-labelledby="contained-modal-title-vcenter"
-            dialogClassName='modal-80w modal-80h'
+            backdrop='static'
             centered
         >
             <Modal.Header closeButton>
@@ -33,30 +33,29 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
                 <p>
                     Do you want to proceed checkout?
                 </p>
-                <div className='d-flex'>
-                    <div>
+                <div className='d-flex justify-content-around'>
+                    <div className='d-grid' style={{ width: '45%' }}>
                         {
                             cartItems.map(item => (
-                                <CartItem {...item} />
+                                <CartItem key={item.id} {...item} />
                             ))
                         }
+                        <div className='fw-bold d-flex justify-content-end align-it'>
+                            <u>
+                                Total {formatCurrency(cartItems.reduce((total, cartItem) => {
+                                    const item = storeItems.find(i => i.id === cartItem.id)
+                                    return total + (item?.price || 0) * cartItem.quantity
+                                }, 0))}
+                            </u>
+                        </div>
                     </div>
                     <div>
                         Hello
                     </div>
                 </div>
-                <div className='fw-bold d-flex justify-content-end'>
-                    <u>
-                        Total {formatCurrency(cartItems.reduce((total, cartItem) => {
-                            const item = storeItems.find(i => i.id === cartItem.id)
-                            return total + (item?.price || 0) * cartItem.quantity
-                        }, 0))}
-                    </u>
-                </div>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={onHide}>Yes</Button>
-                <Button onClick={onHide}>Close</Button>
+                <Button onClick={onHide}>Cancel</Button>
             </Modal.Footer>
         </Modal>
     );

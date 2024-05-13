@@ -5,8 +5,8 @@ import firstSlide from '../../public/imgs/default.jpg'
 
 export function Home() {
   return (
-    <div className="m-auto d-flex justify-content-center align-items-center">
-      <Carousel interval={5000} style={{ maxWidth: '40%', minWidth: '500px' }}>
+    <div id='tem' className="m-auto d-flex justify-content-center align-items-center">
+      <Carousel id='carousel' interval={5000} style={{ maxWidth: '40%', minWidth: '500px' }}>
         <Carousel.Item>
           <img
             className="w-100"
@@ -19,7 +19,7 @@ export function Home() {
           </Carousel.Caption>
         </Carousel.Item>
         {projectList.map(item => (
-          <Carousel.Item>
+          <Carousel.Item key={item.title}>
             <img
               className="w-100"
               src={item.src}
