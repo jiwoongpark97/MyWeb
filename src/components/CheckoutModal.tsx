@@ -27,7 +27,6 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
             event.stopPropagation();
         }
         setValidated(true);
-        console.log(event);
     };
 
     return (
@@ -67,7 +66,7 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
                     </div>
                     <div className='vr'></div>
                     <div style={{ width: '45%' }}>
-                        <Form validated={validated} onSubmit={() => handleSubmit}>
+                        <Form action='/' method='POST' validated={validated} onSubmit={() => handleSubmit}>
                             <Form.Group className="mb-3" controlId="emailForm.Name">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control required type="name" placeholder="Enter your name" />
