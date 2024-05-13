@@ -4,15 +4,31 @@ import { useShoppingCart } from '../context/ShoppingCartContext';
 import { CartItem } from './CartItem';
 import { formatCurrency } from '../utilities/formatCurrency';
 import storeItems from '../../src/data/items.json'
+import Form from 'react-bootstrap/Form'
+import { FormEvent, useState } from 'react';
 
 type CheckoutModalProps = {
     show: boolean
     onHide: () => void
 }
 
+type eventProps = {
+    event: FormEvent<HTMLFormElement>
+}
 
 export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
     const { cartItems } = useShoppingCart();
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = ({ event }: eventProps) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        setValidated(true);
+        console.log(event);
+    };
 
     return (
         <Modal
@@ -49,8 +65,27 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
                             </u>
                         </div>
                     </div>
-                    <div>
-                        Hello
+                    <div className='vr'></div>
+                    <div style={{ width: '45%' }}>
+                        <Form validated={validated} onSubmit={() => handleSubmit}>
+                            <Form.Group className="mb-3" controlId="emailForm.Name">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control required type="name" placeholder="Enter your name" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="emailForm.Company">
+                                <Form.Label>Company</Form.Label>
+                                <Form.Control required type="name" placeholder="Enter your company" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="emailForm.Email">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control required type="email" placeholder="example@yourcompany.com" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="emailForm.Comment">
+                                <Form.Label>Any comments?</Form.Label>
+                                <Form.Control as="textarea" rows={3} />
+                            </Form.Group>
+                            <Button type='submit'>Process</Button>
+                        </Form>
                     </div>
                 </div>
             </Modal.Body>
