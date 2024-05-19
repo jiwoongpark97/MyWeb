@@ -10,7 +10,18 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
   const [imageData1, setImageData1] = useState<ImageData | null>(null);
   const [imageData2, setImageData2] = useState<ImageData | null>(null);
   const [isSmudging, setIsSmudging] = useState(false);
-  const [brushRadius, setBrushRadius] = useState(100); // Adjust brush radius in pixels
+
+  function imagedata_to_image(imagedata: ImageData) {
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = imagedata.width;
+    canvas.height = imagedata.height;
+    ctx?.putImageData(imagedata, 0, 0);
+
+    var image = new Image();
+    image.src = canvas.toDataURL();
+    return image;
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -57,65 +68,24 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     if (!canvas || !imageData1 || !imageData2) return;
 
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const pat = ctx?.createPattern(imagedata_to_image(imageData2), 'repeat');
+    if (!ctx || !pat) return;
 
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const centerX = x;
-    const centerY = y;
+    ctx.save();
 
-    const data2 = imageData2.data;
-    const revealedPixels = []; // Keep track of revealed pixels
+    var radius = 70;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+    ctx.clip();
 
-    for (let i = 0; i < imageData1.data.length; i += 4) {
-      const pixelX = i / 4 % canvas.width;
-      const pixelY = Math.floor(i / 4 / canvas.width);
+    ctx.fillStyle = 'red';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const distanceFromCenter = Math.sqrt(
-        Math.pow(pixelX - centerX, 2) + Math.pow(pixelY - centerY, 2)
-      );
-
-      if (distanceFromCenter <= brushRadius) {
-        // Clear the first image data within the circle
-        imageData1.data[i] = 0; // Red channel
-        imageData1.data[i + 1] = 0; // Green channel
-        imageData1.data[i + 2] = 0; // Blue channel
-
-        // Reveal the second image data with full opacity
-        data2[i] = 255; // Red channel
-        data2[i + 1] = 255; // Green channel
-        data2[i + 2] = 255; // Blue channel
-
-        revealedPixels.push(i); // Mark pixel as revealed
-      }
-    }
-
-    // Check if reveal threshold is met
-    const revealedRatio = revealedPixels.length / (canvas.width * canvas.height);
-    console.log(revealedRatio);
-    if (revealedRatio >= 0.8) {
-      // Fully reveal the second image if threshold is met
-      for (let i = 0; i < imageData1.data.length; i += 4) {
-        imageData1.data[i] = 0;
-        imageData1.data[i + 1] = 0;
-        imageData1.data[i + 2] = 0;
-      }
-    } else {
-      // Create a new ImageData object using the imageData1 data and dimensions
-      const newImageData = new ImageData(imageData1.data, imageData1.width, imageData1.height);
-
-      // Create a new ImageData object using the data2 array and the dimensions of the canvas
-      const newImageData2 = new ImageData(data2, canvas.width, canvas.height);
-
-      // Update the canvas data with both images
-      ctx.putImageData(newImageData, 0, 0);
-      ctx.putImageData(newImageData2, 0, 0);
-    }
-
-    // Update the canvas to reflect changes
-    ctx.stroke();
+    ctx.restore();
   };
 
 
