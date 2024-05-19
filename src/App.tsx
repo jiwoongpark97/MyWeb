@@ -28,7 +28,7 @@ function App() {
           </Routes>
         </Container> */}
       <div className='vh-100 vw-100'>
-        <ImageSmudge imageUrl1={'/imgs/storeItems/javascript.png'} imageUrl2={'/imgs/storeItems/typescript.png'} />
+        <ImageSmudge imageUrl1={'/imgs/storeItems/javascript.png'} imageUrl2={'/imgs/storeItems/kotlin.png'} />
       </div>
       {/* </div> */}
     </ShoppingCartProvider>
