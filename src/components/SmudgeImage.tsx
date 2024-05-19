@@ -7,7 +7,11 @@ interface ImageSmudgeProps {
 
 export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [imageData1, setImageData1] = useState<ImageData | null>(null);
+  const [currentImage, setCurrentImage] = useState<HTMLImageElement>(() => {
+    const img = new Image();
+    img.src = imageUrl1;
+    return img;
+  });
   const [isSmudging, setIsSmudging] = useState(false);
 
 
@@ -18,17 +22,13 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const image1 = new Image();
-    image1.onload = () => {
-      canvas.width = image1.width;
-      canvas.height = image1.height;
-      ctx.drawImage(image1, 0, 0);
-      const data = ctx.getImageData(0, 0, image1.width, image1.height);
-      setImageData1(data);
-    };
-    image1.src = imageUrl1;
+    currentImage.onload = () => {
+      canvas.width = currentImage.width;
+      canvas.height = currentImage.height;
+      ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
+    }
 
-  }, [imageUrl1, imageUrl2]);
+  }, [currentImage]);
 
   const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
     setIsSmudging(true);
@@ -45,9 +45,12 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     setIsSmudging(false);
   };
 
+  const gridSize = 10; // Size of each grid square in pixels
+  let grid: any[] = []; // 2D array to track which grid squares have been smudged
+
   const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
-    if (!canvas || !imageData1) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -68,8 +71,33 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     ctx.globalCompositeOperation = 'source-in';
     ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
 
-    ctx.restore();
+    // Calculate the grid squares that have been smudged
+    const gridLeft = Math.floor((x - radius) / gridSize);
+    const gridRight = Math.ceil((x + radius) / gridSize);
+    const gridTop = Math.floor((y - radius) / gridSize);
+    const gridBottom = Math.ceil((y + radius) / gridSize);
 
+    for (let i = gridLeft; i < gridRight; i++) {
+      if (!grid[i]) {
+        grid[i] = [];
+      }
+      for (let j = gridTop; j < gridBottom; j++) {
+        grid[i][j] = true;
+      }
+    }
+
+    // Calculate the total smudged area
+    const totalSmudgedArea = grid.reduce((sum, row) => sum + row.filter(Boolean).length, 0) * gridSize * gridSize;
+
+    console.log(totalSmudgedArea / (canvas.width * canvas.height));
+
+    // If the total smudged area is 80% or more of the total canvas area, clear the canvas
+    if (totalSmudgedArea / (canvas.width * canvas.height) >= 0.8) {
+      setCurrentImage(image2); // Reveal the second image
+      grid = []; // Reset the grid
+    }
+
+    ctx.restore();
   };
 
   return (
