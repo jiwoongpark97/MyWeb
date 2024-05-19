@@ -50,43 +50,26 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     if (!canvas || !imageData1) return;
 
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     const image2 = new Image();
     image2.src = imageUrl2;
 
-    image2.onload = () => {
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = canvas.width;
-      tempCanvas.height = canvas.height;
-      const tempCtx = tempCanvas.getContext('2d');
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
 
-      // Calculate the scale factor to maintain aspect ratio
-      const scale = Math.max(canvas.width / image2.width, canvas.height / image2.height);
+    ctx.save();
 
-      // Calculate the position to center the image
-      const xx = (canvas.width - image2.width * scale) / 2;
-      const yy = (canvas.height - image2.height * scale) / 2;
+    var radius = 100;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+    ctx.clip();
 
-      tempCtx?.drawImage(image2, xx, yy, image2.width * scale, image2.height * scale);
+    ctx.globalCompositeOperation = 'source-in';
+    ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
 
-      const pat = ctx?.createPattern(tempCanvas, 'no-repeat');
-      if (!ctx || !pat) return;
+    ctx.restore();
 
-      const rect = canvas.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      ctx.save();
-
-      var radius = 100;
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
-      ctx.clip();
-
-      ctx.fillStyle = pat;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.restore();
-    };
   };
 
   return (
