@@ -58,7 +58,15 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
       tempCanvas.width = canvas.width;
       tempCanvas.height = canvas.height;
       const tempCtx = tempCanvas.getContext('2d');
-      tempCtx?.drawImage(image2, 0, 0, canvas.width, canvas.height);
+
+      // Calculate the scale factor to maintain aspect ratio
+      const scale = Math.max(canvas.width / image2.width, canvas.height / image2.height);
+
+      // Calculate the position to center the image
+      const xx = (canvas.width - image2.width * scale) / 2;
+      const yy = (canvas.height - image2.height * scale) / 2;
+
+      tempCtx?.drawImage(image2, xx, yy, image2.width * scale, image2.height * scale);
 
       const pat = ctx?.createPattern(tempCanvas, 'no-repeat');
       if (!ctx || !pat) return;
@@ -69,7 +77,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
 
       ctx.save();
 
-      var radius = 70;
+      var radius = 100;
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
       ctx.clip();
