@@ -89,15 +89,23 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     // Calculate the total smudged area
     const totalSmudgedArea = grid.reduce((sum, row) => sum + row.filter(Boolean).length, 0) * gridSize * gridSize;
 
-    console.log(totalSmudgedArea / (canvas.width * canvas.height));
+
+    ctx.restore();
 
     // If the total smudged area is 80% or more of the total canvas area, clear the canvas
     if (totalSmudgedArea / (canvas.width * canvas.height) >= 0.8) {
       setCurrentImage(image2); // Reveal the second image
       grid = []; // Reset the grid
-    }
 
-    ctx.restore();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (image2.complete) { // Check if the image has been loaded
+        ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
+      } else {
+        image2.onload = () => {
+          ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
+        };
+      }
+    }
   };
 
   return (
