@@ -27,7 +27,9 @@ function App() {
             <Route path='/about' element={<About />} />
           </Routes>
         </Container> */}
-      <ImageSmudge imageUrl1={'/imgs/storeItems/javascript.png'} imageUrl2={'/imgs/storeItems/typescript.png'} />
+      <div className='vh-100 vw-100'>
+        <ImageSmudge imageUrl1={'/imgs/storeItems/javascript.png'} imageUrl2={'/imgs/storeItems/typescript.png'} />
+      </div>
       {/* </div> */}
     </ShoppingCartProvider>
   )

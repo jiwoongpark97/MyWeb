@@ -8,20 +8,8 @@ interface ImageSmudgeProps {
 export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [imageData1, setImageData1] = useState<ImageData | null>(null);
-  const [imageData2, setImageData2] = useState<ImageData | null>(null);
   const [isSmudging, setIsSmudging] = useState(false);
 
-  function imagedata_to_image(imagedata: ImageData) {
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    canvas.width = imagedata.width;
-    canvas.height = imagedata.height;
-    ctx?.putImageData(imagedata, 0, 0);
-
-    var image = new Image();
-    image.src = canvas.toDataURL();
-    return image;
-  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -40,12 +28,6 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     };
     image1.src = imageUrl1;
 
-    const image2 = new Image();
-    image2.onload = () => {
-      const data = ctx.getImageData(0, 0, image1.width, image1.height);
-      setImageData2(data);
-    };
-    image2.src = imageUrl2;
   }, [imageUrl1, imageUrl2]);
 
   const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
@@ -65,33 +47,41 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
 
   const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
-    if (!canvas || !imageData1 || !imageData2) return;
+    if (!canvas || !imageData1) return;
 
     const ctx = canvas.getContext('2d');
-    const pat = ctx?.createPattern(imagedata_to_image(imageData2), 'repeat');
-    if (!ctx || !pat) return;
+    const image2 = new Image();
+    image2.src = imageUrl2;
 
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    image2.onload = () => {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempCtx = tempCanvas.getContext('2d');
+      tempCtx?.drawImage(image2, 0, 0, canvas.width, canvas.height);
 
-    ctx.save();
+      const pat = ctx?.createPattern(tempCanvas, 'no-repeat');
+      if (!ctx || !pat) return;
 
-    var radius = 70;
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
-    ctx.clip();
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
-    ctx.fillStyle = 'red';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
 
-    ctx.restore();
+      var radius = 70;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+      ctx.clip();
+
+      ctx.fillStyle = pat;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.restore();
+    };
   };
 
-
   return (
-    <div>
-      <canvas ref={canvasRef} width={500} height={300} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} />
-    </div>
+    <canvas ref={canvasRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} />
   );
 }
