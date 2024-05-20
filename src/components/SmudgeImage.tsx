@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 interface ImageSmudgeProps {
-  imageUrls: Array<string>;
+  imageUrls: Array<string>,
+  resetThreshold: number
 }
 
-export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
+export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThreshold }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
@@ -99,7 +100,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
     ctx.restore();
 
     // If the total smudged area is 40% or more of the total canvas area, clear the canvas
-    if (totalSmudgedArea / (canvas.width * canvas.height) >= 0.4) {
+    if (totalSmudgedArea / (canvas.width * canvas.height) >= resetThreshold) {
       setCurrentIndex(nextIndex); // Move to the next image
       setNextIndex((nextIndex + 1) % imageUrls.length); // Set the next image
 
