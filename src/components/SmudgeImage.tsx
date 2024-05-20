@@ -1,15 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 interface ImageSmudgeProps {
-  imageUrl1: string; // URL of the first image (to be revealed)
-  imageUrl2: string; // URL of the second image (to be smudged over)
+  imageUrls: Array<string>;
 }
 
-export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }) => {
+export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(1);
   const [currentImage, setCurrentImage] = useState<HTMLImageElement>(() => {
     const img = new Image();
-    img.src = imageUrl1;
+    img.src = imageUrls[currentIndex];
     return img;
   });
   const [isSmudging, setIsSmudging] = useState(false);
@@ -28,7 +29,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
       ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
     }
 
-  }, [currentImage]);
+  }, [currentImage, nextIndex]);
 
   const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
     setIsSmudging(true);
@@ -54,8 +55,6 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    const image2 = new Image();
-    image2.src = imageUrl2;
 
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -67,6 +66,9 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
     ctx.clip();
+
+    const image2 = new Image();
+    image2.src = imageUrls[nextIndex];
 
     ctx.globalCompositeOperation = 'source-in';
     ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
@@ -93,16 +95,22 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrl1, imageUrl2 }
     ctx.restore();
 
     // If the total smudged area is 80% or more of the total canvas area, clear the canvas
-    if (totalSmudgedArea / (canvas.width * canvas.height) >= 0.8) {
-      setCurrentImage(image2); // Reveal the second image
+    if (totalSmudgedArea / (canvas.width * canvas.height) >= 0.4) {
+      setCurrentIndex(nextIndex); // Move to the next image
+      setNextIndex((nextIndex + 1) % imageUrls.length); // Set the next image
+
+      const nextImage = new Image();
+      nextImage.src = imageUrls[nextIndex];
+      setCurrentImage(nextImage); // Reveal the second image
+
       grid = []; // Reset the grid
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       if (image2.complete) { // Check if the image has been loaded
-        ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(nextImage, 0, 0, canvas.width, canvas.height);
       } else {
         image2.onload = () => {
-          ctx.drawImage(image2, 0, 0, canvas.width, canvas.height);
+          ctx.drawImage(nextImage, 0, 0, canvas.width, canvas.height);
         };
       }
     }
