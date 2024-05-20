@@ -26,8 +26,8 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
     if (!ctx) return;
 
     currentImage.onload = () => {
-      canvas.width = currentImage.width;
-      canvas.height = currentImage.height;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
       ctx.drawImage(currentImage, 0, 0, canvas.width, canvas.height);
     }
 
@@ -64,7 +64,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
 
     ctx.save();
 
-    var radius = 100;
+    var radius = window.innerWidth / 10;
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
     ctx.clip();
