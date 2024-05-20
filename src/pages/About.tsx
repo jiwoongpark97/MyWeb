@@ -1,6 +1,6 @@
 export function About() {
     return (
-        <div className="about-me" className='overflow-auto' style={{ paddingTop: '150px', paddingLeft: 10, paddingRight: 10, paddingBottom: 10, height: '100vh', overflow: 'auto' }}>
+        <div className="overflow-auto" style={{ paddingTop: '150px', paddingLeft: 10, paddingRight: 10, paddingBottom: 10, height: '100vh' }}>
             <h2>About Me</h2>
             <div className="contact-info">
                 <p><strong>Name:</strong> Ji Woong Park (Eric Park)</p>
