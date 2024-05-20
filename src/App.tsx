@@ -27,8 +27,8 @@ function App() {
             <Route path='/about' element={<About />} />
           </Routes>
         </Container> */}
-      <div className='vh-100 vw-100'>
-        <ImageSmudge imageUrls={['/imgs/storeItems/javascript.png', '/imgs/storeItems/kotlin.png']} />
+      <div className='vh-100 vw-100 d-flex justify-content-center align-items-center'>
+        <ImageSmudge imageUrls={['/imgs/carousel/Argus.png', '/imgs/carousel/Campus_Buddy.png']} />
       </div>
       {/* </div> */}
     </ShoppingCartProvider>
