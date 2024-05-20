@@ -14,6 +14,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
     return img;
   });
   const [isSmudging, setIsSmudging] = useState(false);
+  const [grid, setGrid] = useState<number[][]>([]);
 
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
   };
 
   const gridSize = 10; // Size of each grid square in pixels
-  let grid: any[] = []; // 2D array to track which grid squares have been smudged
+  // let grid: any[] = []; // 2D array to track which grid squares have been smudged
 
   const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -79,22 +80,25 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
     const gridTop = Math.floor((y - radius) / gridSize);
     const gridBottom = Math.ceil((y + radius) / gridSize);
 
+    const newGrid = [...grid]; // Create a new grid array
+
     for (let i = gridLeft; i < gridRight; i++) {
-      if (!grid[i]) {
-        grid[i] = [];
+      if (!newGrid[i]) {
+        newGrid[i] = [];
       }
       for (let j = gridTop; j < gridBottom; j++) {
-        grid[i][j] = true;
+        newGrid[i][j] = gridSize * gridSize; // Mark the grid square as smudged
       }
     }
 
-    // Calculate the total smudged area
-    const totalSmudgedArea = grid.reduce((sum, row) => sum + row.filter(Boolean).length, 0) * gridSize * gridSize;
+    setGrid(newGrid);
 
+    // Calculate the total smudged area
+    const totalSmudgedArea = newGrid.reduce((sum, row) => sum + (row ? row.reduce((sum, cell) => sum + (cell || 0), 0) : 0), 0);
 
     ctx.restore();
 
-    // If the total smudged area is 80% or more of the total canvas area, clear the canvas
+    // If the total smudged area is 40% or more of the total canvas area, clear the canvas
     if (totalSmudgedArea / (canvas.width * canvas.height) >= 0.4) {
       setCurrentIndex(nextIndex); // Move to the next image
       setNextIndex((nextIndex + 1) % imageUrls.length); // Set the next image
@@ -103,7 +107,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls }) => {
       nextImage.src = imageUrls[nextIndex];
       setCurrentImage(nextImage); // Reveal the second image
 
-      grid = []; // Reset the grid
+      setGrid([]); // Reset the grid
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       if (image2.complete) { // Check if the image has been loaded
