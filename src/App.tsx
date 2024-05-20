@@ -8,29 +8,29 @@ import { ShoppingCartProvider } from './context/ShoppingCartContext'
 import { ImageSmudge } from './components/SmudgeImage'
 
 const images = [
-  '/imgs/storeItems/javascript.png',
-  '/imgs/storeItems/typescript.png',
-  '/imgs/storeItems/git.png',
-  '/imgs/storeItems/javascript.png',
+  '/imgs/smudgeScreens/4.jpg',
+  '/imgs/smudgeScreens/1.jpg',
+  '/imgs/smudgeScreens/2.jpg',
+  '/imgs/smudgeScreens/3.jpg',
 ];
 
 function App() {
 
   return (
     <ShoppingCartProvider>
-      {/* <div className='vh-100 vw-100 overflow-scroll' style={{ backgroundImage: 'url(../imgs/background.gif)', backgroundSize: 'cover' }}> */}
-      {/* <Navbar /> */}
-      {/* <Container fluid className='p-5'>
+      <div className='vh-100 vw-100 d-flex justify-content-center align-items-center flex-column' style={{ width: '100%', height: '100%' }}>
+        <Navbar />
+        {/* <Container fluid className='p-5'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/store' element={<Store />} />
             <Route path='/about' element={<About />} />
           </Routes>
         </Container> */}
-      <div className='vh-100 vw-100 d-flex justify-content-center align-items-center'>
-        <ImageSmudge imageUrls={['/imgs/carousel/Argus.png', '/imgs/carousel/Campus_Buddy.png']} />
+
+        <ImageSmudge imageUrls={images} resetThreshold={0.6} />
+
       </div>
-      {/* </div> */}
     </ShoppingCartProvider>
   )
 }

@@ -8,7 +8,7 @@ export function Navbar() {
     const { openCart, cartQuantity, getActiveNav, setActiveNav } = useShoppingCart()
 
     return (
-        <NavbarBs sticky='top' className='shadow-sm w-100' style={{ backgroundColor: 'transparent', backdropFilter: 'blur(10px)' }}>
+        <NavbarBs className='w-100' style={{ backgroundColor: 'transparent', position: 'fixed', top: 0 }}>
             <Container className='d-flex justify-content-between'>
                 <Nav defaultActiveKey={getActiveNav()} as='ul' onSelect={(eventKey, _) => setActiveNav(eventKey!!)}>
                     <Nav.Link as={Link} to='/' eventKey={"home"}>
