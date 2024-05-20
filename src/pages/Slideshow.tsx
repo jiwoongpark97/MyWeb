@@ -2,7 +2,7 @@ import { Carousel } from 'react-bootstrap';
 import projectList from '../data/projects.json'
 
 
-export function Home() {
+export function Slideshow() {
   return (
     <div id='tem' className="m-auto d-flex justify-content-center align-items-center">
       <Carousel id='carousel' interval={5000} style={{ maxWidth: '40%', minWidth: '500px' }}>
