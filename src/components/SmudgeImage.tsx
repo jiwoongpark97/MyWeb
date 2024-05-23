@@ -73,7 +73,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
 
     ctx.save();
 
-    var radius = window.innerWidth / 10;
+    var radius = window.innerWidth / 12;
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
     ctx.clip();
