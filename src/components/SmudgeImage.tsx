@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, TouchEvent } from 'react';
 
 interface ImageSmudgeProps {
   imageUrls: Array<string>,
@@ -33,12 +33,12 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
 
   }, [currentImage, nextIndex]);
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
     setIsSmudging(true);
     handleSmudge(event);
   };
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
     if (isSmudging) {
       handleSmudge(event);
     }
@@ -51,7 +51,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
   const gridSize = 10; // Size of each grid square in pixels
   // let grid: any[] = []; // 2D array to track which grid squares have been smudged
 
-  const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -59,8 +59,16 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
     if (!ctx) return;
 
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    let x = 0;
+    let y = 0;
+
+    if (typeof TouchEvent !== 'undefined' && event.nativeEvent instanceof TouchEvent) {
+      x = event.touches[0].clientX - rect.left;
+      y = event.touches[0].clientY - rect.top;
+    } else if (event.nativeEvent instanceof MouseEvent) {
+      x = event.clientX - rect.left;
+      y = event.clientY - rect.top;
+    }
 
     ctx.save();
 
@@ -122,6 +130,14 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
   };
 
   return (
-    <canvas ref={canvasRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} />
+    <canvas
+      ref={canvasRef}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchMove={handleMouseMove}
+      onTouchEnd={handleMouseUp}
+    />
   );
 }
