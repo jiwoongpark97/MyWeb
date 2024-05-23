@@ -6,7 +6,7 @@ interface ImageSmudgeProps {
   resetThreshold: number
 }
 
-export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThreshold }) => {
+const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThreshold }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
@@ -142,3 +142,5 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
     />
   );
 }
+
+export default ImageSmudge;

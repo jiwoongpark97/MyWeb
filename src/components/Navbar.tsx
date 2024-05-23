@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image'
 import '../App.css'
 import { Link } from 'react-router-dom'
 
-export function Navbar() {
+export default function Navbar() {
     const { openCart, cartQuantity, getActiveNav, setActiveNav } = useShoppingCart()
 
     return (

@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
-import { About } from './pages/About'
-import { Store } from './pages/Store'
-import { Navbar } from './components/Navbar'
+import About from './pages/About'
+import Store from './pages/Store'
+import Navbar from './components/Navbar'
 import { ShoppingCartProvider } from './context/ShoppingCartContext'
-import { ImageSmudge } from './components/SmudgeImage'
+import ImageSmudge from './components/SmudgeImage'
 
 const images = [
   '/imgs/smudgeScreens/1.png',

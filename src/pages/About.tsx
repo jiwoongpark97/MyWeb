@@ -1,4 +1,6 @@
-export function About() {
+
+
+export default function About() {
     return (
         <div className="overflow-auto" style={{ paddingTop: '150px', paddingLeft: 10, paddingRight: 10, paddingBottom: 10, height: '100vh', backgroundColor: '#999491' }}>
             <h2>About Me</h2>
