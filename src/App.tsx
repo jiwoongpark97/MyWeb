@@ -7,10 +7,11 @@ import { ShoppingCartProvider } from './context/ShoppingCartContext'
 import { ImageSmudge } from './components/SmudgeImage'
 
 const images = [
-  '/imgs/smudgeScreens/4.jpg',
-  '/imgs/smudgeScreens/1.jpg',
-  '/imgs/smudgeScreens/2.jpg',
-  '/imgs/smudgeScreens/3.jpg',
+  '/imgs/smudgeScreens/1.png',
+  '/imgs/smudgeScreens/2.png',
+  '/imgs/smudgeScreens/3.png',
+  '/imgs/smudgeScreens/4.png',
+  '/imgs/smudgeScreens/5.png',
 ];
 
 function App() {
