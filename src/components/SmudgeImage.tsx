@@ -63,12 +63,12 @@ const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThreshold }) 
     let x = 0;
     let y = 0;
 
-    if (typeof TouchEvent !== 'undefined' && event.nativeEvent instanceof TouchEvent) {
-      x = event.touches[0].clientX - rect.left;
-      y = event.touches[0].clientY - rect.top;
-    } else if (event.nativeEvent instanceof MouseEvent) {
-      x = event.clientX - rect.left;
-      y = event.clientY - rect.top;
+    if ((event.nativeEvent as TouchEvent).touches) {
+      x = (event.nativeEvent as TouchEvent).touches[0].clientX - rect.left;
+      y = (event.nativeEvent as TouchEvent).touches[0].clientY - rect.top;
+    } else if ((event.nativeEvent as MouseEvent).clientX) {
+      x = (event.nativeEvent as MouseEvent).clientX - rect.left;
+      y = (event.nativeEvent as MouseEvent).clientY - rect.top;
     }
 
     ctx.save();
