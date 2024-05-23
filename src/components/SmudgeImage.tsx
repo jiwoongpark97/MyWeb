@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect, TouchEvent } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+
 
 interface ImageSmudgeProps {
   imageUrls: Array<string>,
@@ -33,12 +34,12 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
 
   }, [currentImage, nextIndex]);
 
-  const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     setIsSmudging(true);
     handleSmudge(event);
   };
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (isSmudging) {
       handleSmudge(event);
     }
@@ -51,7 +52,7 @@ export const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThresh
   const gridSize = 10; // Size of each grid square in pixels
   // let grid: any[] = []; // 2D array to track which grid squares have been smudged
 
-  const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
+  const handleSmudge = (event: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
