@@ -18,7 +18,7 @@ function App() {
 
   return (
     <ShoppingCartProvider>
-      <div className='vh-100 vw-100 d-flex justify-content-center align-items-center flex-column' style={{ boxSizing: 'border-box', margin: 0, padding: 0, overflow: 'hidden' }}>
+      <div className='vh-100 vw-100 d-flex justify-content-center align-items-center flex-column' style={{ boxSizing: 'border-box', margin: 0, padding: 0, overflow: 'hidden', overscrollBehavior: 'none' }}>
         <Navbar />
         <Container className='h-100 w-100' fluid style={{ margin: 0, padding: 0 }}>
           <Routes>
