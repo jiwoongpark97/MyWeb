@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 import About from './pages/About'
 import Store from './pages/Store'
 import Navbar from './components/Navbar'
-import { ShoppingCartProvider } from './context/ShoppingCartContext'
+import { ShoppingCartProvider } from './context/UseShoppingCart.tsx'
 import ImageSmudge from './components/SmudgeImage'
 
 const images = [

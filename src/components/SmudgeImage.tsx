@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import {useShoppingCart} from "../context/ShoppingCartContext.tsx";
+import {useShoppingCart} from "../context/UseShoppingCart.tsx";
 
 
 interface ImageSmudgeProps {

@@ -1,7 +1,7 @@
 import { Col, Row } from 'react-bootstrap'
 import storeItems from '../data/items.json'
 import { StoreItems } from '../components/StoreItem'
-import {useShoppingCart} from "../context/ShoppingCartContext.tsx";
+import {useShoppingCart} from "../context/UseShoppingCart.tsx";
 import {useEffect} from "react";
 
 export default function Store() {

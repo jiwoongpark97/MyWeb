@@ -21,15 +21,13 @@ type ShoppingCartContext = {
     cartQuantity: number
     cartItems: CartItem[]
     getActiveNav: () => string
-    setActiveNav: (nav: string | null) => void
+    setActiveNav: (nav: string) => void
+    removeAllFromCart: () => void
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
 
-export function useShoppingCart() {
-    return useContext(ShoppingCartContext)
-}
-
+export const useShoppingCart = () => useContext(ShoppingCartContext);
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     const [isOpen, setIsOpen] = useState(false);
@@ -90,7 +88,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         })
     }
 
-    return <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart, getActiveNav, setActiveNav }}>
+    function removeAllFromCart() {
+        setCartItems([]);
+    }
+
+    return <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, openCart, closeCart, getActiveNav, setActiveNav, removeAllFromCart }}>
         {children}
         <ShoppingCart isOpen={isOpen} />
     </ShoppingCartContext.Provider>

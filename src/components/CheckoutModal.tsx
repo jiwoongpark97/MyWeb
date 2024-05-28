@@ -1,33 +1,25 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useShoppingCart } from '../context/ShoppingCartContext';
+import { useShoppingCart } from '../context/UseShoppingCart.tsx';
 import { CartItem } from './CartItem';
 import { formatCurrency } from '../utilities/formatCurrency';
 import storeItems from '../../src/data/items.json'
 import Form from 'react-bootstrap/Form'
-import { FormEvent, useState } from 'react';
 
 type CheckoutModalProps = {
     show: boolean
     onHide: () => void
 }
 
-type eventProps = {
-    event: FormEvent<HTMLFormElement>
-}
-
 export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
-    const { cartItems } = useShoppingCart();
-    const [validated, setValidated] = useState(false);
+    const { cartItems, removeAllFromCart } = useShoppingCart();
 
-    const handleSubmit = ({ event }: eventProps) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        setValidated(true);
-    };
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        alert('Thank you for your purchase!');
+        removeAllFromCart();
+        onHide();
+    }
 
     return (
         <Modal
@@ -66,7 +58,7 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
                     </div>
                     <div className='vr'></div>
                     <div style={{ width: '45%' }}>
-                        <Form action='' method='POST' validated={validated} onSubmit={() => handleSubmit}>
+                        <div>
                             <Form.Group className="mb-3" controlId="emailForm.Name">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control required type="name" placeholder="Enter your name" />
@@ -83,8 +75,8 @@ export function CheckoutModal({ show, onHide }: CheckoutModalProps) {
                                 <Form.Label>Any comments?</Form.Label>
                                 <Form.Control as="textarea" rows={3} />
                             </Form.Group>
-                            <Button type='submit'>Process</Button>
-                        </Form>
+                            <Button onClick={(e) => handleSubmit(e)}>Process</Button>
+                        </div>
                     </div>
                 </div>
             </Modal.Body>

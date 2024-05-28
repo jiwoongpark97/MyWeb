@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import {useShoppingCart} from "../context/ShoppingCartContext.tsx";
+import {useShoppingCart} from "../context/UseShoppingCart.tsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/legacy/build/pdf.worker.min.js',

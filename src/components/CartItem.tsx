@@ -1,4 +1,4 @@
-import { useShoppingCart } from "../context/ShoppingCartContext"
+import { useShoppingCart } from "../context/UseShoppingCart.tsx"
 import storeItems from "../data/items.json"
 import { Button, Stack } from "react-bootstrap"
 import { formatCurrency } from "../utilities/formatCurrency"
