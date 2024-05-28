@@ -27,8 +27,6 @@ function App() {
             <Route path='/about' element={<About />} />
           </Routes>
         </Container>
-        {/* <ImageSmudge imageUrls={images} resetThreshold={0.6} /> */}
-
       </div>
     </ShoppingCartProvider>
   )
