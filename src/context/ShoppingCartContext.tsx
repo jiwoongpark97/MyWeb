@@ -21,7 +21,7 @@ type ShoppingCartContext = {
     cartQuantity: number
     cartItems: CartItem[]
     getActiveNav: () => string
-    setActiveNav: (nav: string) => void
+    setActiveNav: (nav: string | null) => void
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)

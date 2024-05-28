@@ -10,7 +10,7 @@ export default function Navbar() {
     return (
         <NavbarBs className='w-100' style={{ backgroundColor: 'transparent', position: 'fixed', top: 0, pointerEvents: 'none', userSelect: 'none', height: '150px', zIndex: 2 }}>
             <Container className='d-flex justify-content-between'>
-                <Nav defaultActiveKey={getActiveNav()} as='ul' onSelect={(eventKey, _) => setActiveNav(eventKey!!)}>
+                <Nav defaultActiveKey={getActiveNav()} as='ul' onSelect={(eventKey) => setActiveNav(eventKey)}>
                     <Nav.Link as={Link} to='/' eventKey={"home"} style={{ pointerEvents: 'auto', color: 'white', fontSize: '20px' }} >
                         Home
                     </Nav.Link>
