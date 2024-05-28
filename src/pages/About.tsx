@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
+import {useShoppingCart} from "../context/ShoppingCartContext.tsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/legacy/build/pdf.worker.min.js',
@@ -8,6 +9,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 export default function About() {
     const [numPages, setNumPages] = useState<number>(1);
+    const { setActiveNav } = useShoppingCart();
+
+    useEffect(() => {
+        setActiveNav("about");
+    });
 
     function onDocumentLoadSuccess(): void {
         setNumPages(1);

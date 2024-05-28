@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import {useShoppingCart} from "../context/ShoppingCartContext.tsx";
 
 
 interface ImageSmudgeProps {
@@ -7,6 +8,8 @@ interface ImageSmudgeProps {
 }
 
 const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThreshold }) => {
+  const { setActiveNav } = useShoppingCart();
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
@@ -20,6 +23,7 @@ const ImageSmudge: React.FC<ImageSmudgeProps> = ({ imageUrls, resetThreshold }) 
 
 
   useEffect(() => {
+    setActiveNav("home");
     const canvas = canvasRef.current;
     if (!canvas) return;
 
