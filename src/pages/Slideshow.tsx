@@ -2,9 +2,9 @@ import { Carousel } from 'react-bootstrap';
 import projectList from '../data/projects.json'
 
 
-export function Slideshow() {
+export default function Slideshow() {
   return (
-    <div id='tem' className="m-auto d-flex justify-content-center align-items-center">
+    <div className="overflow-auto w-100 h-100 d-flex flex-column justify-content-start align-items-center"  style={{ paddingTop: '150px', paddingLeft: 10, paddingRight: 10, paddingBottom: 10, backgroundColor: '#999491' }}>
       <Carousel id='carousel' interval={5000} style={{ maxWidth: '40%', minWidth: '500px' }}>
         {projectList.map(item => (
           <Carousel.Item key={item.title}>
