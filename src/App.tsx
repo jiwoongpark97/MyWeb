@@ -3,12 +3,8 @@ import { Container } from 'react-bootstrap'
 import About from './pages/About'
 import Store from './pages/Store'
 import Navbar from './components/Navbar'
-<<<<<<< HEAD
-import { ShoppingCartProvider } from './context/UseShoppingCart.tsx'
-=======
 import Slideshow from './pages/Slideshow';
-import { ShoppingCartProvider } from './context/ShoppingCartContext'
->>>>>>> new-main
+import { ShoppingCartProvider } from './context/UseShoppingCart'
 import ImageSmudge from './components/SmudgeImage'
 
 const images = [
