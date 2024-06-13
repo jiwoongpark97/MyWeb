@@ -20,6 +20,9 @@ export default function Navbar() {
                     <Nav.Link as={Link} to='/about' eventKey={"about"} style={{ pointerEvents: 'auto', color: 'white', fontSize: '20px' }} >
                         About
                     </Nav.Link>
+                    <Nav.Link as={Link} to='/project' eventKey={"project"} style={{ pointerEvents: 'auto', color: 'white', fontSize: '20px' }} >
+                        Project
+                    </Nav.Link>
                 </Nav>
                 <Image src='../imgs/logo.png' width={200} height={200} />
                 <Button style={{ width: '4rem', height: '4rem', position: 'relative', pointerEvents: 'auto', zIndex: 2, borderColor: 'white' }} variant='outline-primary' className='rounded-circle' onClick={openCart}>

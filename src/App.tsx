@@ -3,7 +3,12 @@ import { Container } from 'react-bootstrap'
 import About from './pages/About'
 import Store from './pages/Store'
 import Navbar from './components/Navbar'
+<<<<<<< HEAD
 import { ShoppingCartProvider } from './context/UseShoppingCart.tsx'
+=======
+import Slideshow from './pages/Slideshow';
+import { ShoppingCartProvider } from './context/ShoppingCartContext'
+>>>>>>> new-main
 import ImageSmudge from './components/SmudgeImage'
 
 const images = [
@@ -25,6 +30,7 @@ function App() {
             <Route path='/' element={<ImageSmudge imageUrls={images} resetThreshold={0.8} />} />
             <Route path='/store' element={<Store />} />
             <Route path='/about' element={<About />} />
+            <Route path='/project' element={<Slideshow />} />
           </Routes>
         </Container>
       </div>
